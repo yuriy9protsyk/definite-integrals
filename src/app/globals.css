@@ -1,0 +1,273 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+@import "mafs/core.css";
+
+:root {
+  --background: #070b1a;
+  --foreground: #eef2ff;
+  --card: #101730;
+  --card-elevated: #151e3d;
+  --card-foreground: #eef2ff;
+  --popover: #141d3b;
+  --popover-foreground: #f1f5f9;
+  --primary: #7c5cff;
+  --primary-foreground: #ffffff;
+  --secondary: #192447;
+  --secondary-foreground: #dce4ff;
+  --muted: #161f3d;
+  --muted-foreground: #94a3c8;
+  --accent: #22d3ee;
+  --accent-foreground: #05131c;
+  --destructive: #f43f5e;
+  --destructive-foreground: #ffffff;
+  --border: #232f58;
+  --input: #1d284d;
+  --ring: #7c5cff;
+
+  --surface-canvas: radial-gradient(circle at 20% 0%, #131c3e 0%, #070b1a 55%, #050814 100%);
+  --surface-def: linear-gradient(135deg, rgba(124, 92, 255, 0.14) 0%, rgba(16, 23, 48, 0.94) 55%);
+  --surface-graph: linear-gradient(145deg, rgba(34, 211, 238, 0.11) 0%, rgba(11, 23, 42, 0.96) 55%);
+  --surface-theorem: linear-gradient(135deg, rgba(245, 185, 66, 0.11) 0%, rgba(16, 23, 48, 0.96) 55%);
+  --surface-example: linear-gradient(135deg, rgba(79, 141, 255, 0.12) 0%, rgba(16, 23, 48, 0.96) 55%);
+
+  --accent-violet: #8b5cf6;
+  --accent-cyan: #22d3ee;
+  --accent-teal: #2dd4bf;
+  --accent-amber: #f5b942;
+  --accent-cobalt: #4f8dff;
+  --accent-emerald: #22c55e;
+  --accent-rose: #fb7185;
+  --sticky-bg: #fde68a;
+  --sticky-fg: #1e293b;
+  --sticky-fold: #eab308;
+
+  --mafs-grid: rgba(148, 163, 200, 0.14);
+  --mafs-axis: rgba(203, 213, 225, 0.65);
+}
+
+.light {
+  --background: #f4f7fc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-elevated: #f8fafd;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #6344e6;
+  --primary-foreground: #ffffff;
+  --secondary: #e8eef9;
+  --secondary-foreground: #1e293b;
+  --muted: #edf2fa;
+  --muted-foreground: #475569;
+  --accent: #0891b2;
+  --accent-foreground: #ffffff;
+  --destructive: #e11d48;
+  --destructive-foreground: #ffffff;
+  --border: #d5dfef;
+  --input: #e2e8f4;
+  --ring: #6344e6;
+
+  --surface-canvas: linear-gradient(180deg, #f4f7fc 0%, #ebf0f9 100%);
+  --surface-def: linear-gradient(135deg, rgba(99, 68, 230, 0.08) 0%, #ffffff 60%);
+  --surface-graph: linear-gradient(145deg, rgba(8, 145, 178, 0.08) 0%, #ffffff 60%);
+  --surface-theorem: linear-gradient(135deg, rgba(217, 119, 6, 0.09) 0%, #ffffff 60%);
+  --surface-example: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, #ffffff 60%);
+
+  --accent-violet: #6d28d9;
+  --accent-cyan: #0891b2;
+  --accent-teal: #0d9488;
+  --accent-amber: #d97706;
+  --accent-cobalt: #2563eb;
+  --accent-emerald: #16a34a;
+  --accent-rose: #e11d48;
+  --sticky-bg: #fef08a;
+  --sticky-fg: #1e293b;
+  --sticky-fold: #ca8a04;
+
+  --mafs-grid: rgba(15, 23, 42, 0.09);
+  --mafs-axis: rgba(30, 41, 59, 0.72);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-elevated: var(--card-elevated);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-violet-accent: var(--accent-violet);
+  --color-cyan-accent: var(--accent-cyan);
+  --color-teal-accent: var(--accent-teal);
+  --color-amber-accent: var(--accent-amber);
+  --color-cobalt-accent: var(--accent-cobalt);
+  --color-emerald-accent: var(--accent-emerald);
+  --color-rose-accent: var(--accent-rose);
+  --color-sticky-bg: var(--sticky-bg);
+  --color-sticky-fg: var(--sticky-fg);
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-lora), Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-hand: var(--font-caveat), cursive;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body {
+  min-height: 100%;
+  background: var(--surface-canvas);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--border) 90%, transparent);
+  border-radius: 9999px;
+}
+
+/* KaTeX X-Ray Interactive Tokens */
+.katex-xray-root .katex {
+  font-size: 1.15em;
+  color: var(--foreground);
+}
+
+.katex-xray-root.katex-compact .katex {
+  font-size: 0.96em;
+}
+
+.katex-xray-root.katex-xs .katex {
+  font-size: 0.82em;
+}
+
+.katex-xray-root.katex-display-lg .katex {
+  font-size: 1.32em;
+}
+
+.katex-xray-root [class*="var-"] {
+  display: inline-block;
+  padding: 0.04em 0.2em;
+  margin: 0 0.03em;
+  border-radius: 0.32rem;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+  border-bottom: 1.5px dashed transparent;
+}
+
+.katex-xray-root .var-a,
+.katex-xray-root .var-alpha,
+.katex-xray-root .var-c,
+.katex-xray-root .var-mu,
+.katex-xray-root .var-xi,
+.katex-xray-root .var-u {
+  color: var(--accent-amber);
+  border-bottom-color: color-mix(in srgb, var(--accent-amber) 55%, transparent);
+}
+
+.katex-xray-root .var-b,
+.katex-xray-root .var-beta,
+.katex-xray-root .var-dv,
+.katex-xray-root .var-dx {
+  color: var(--accent-cyan);
+  border-bottom-color: color-mix(in srgb, var(--accent-cyan) 55%, transparent);
+}
+
+.katex-xray-root .var-fx,
+.katex-xray-root .var-v,
+.katex-xray-root .var-sigma,
+.katex-xray-root .var-sym {
+  color: var(--accent-teal);
+  border-bottom-color: color-mix(in srgb, var(--accent-teal) 55%, transparent);
+}
+
+.katex-xray-root .var-F,
+.katex-xray-root .var-tau,
+.katex-xray-root .var-phi {
+  color: var(--accent-violet);
+  border-bottom-color: color-mix(in srgb, var(--accent-violet) 55%, transparent);
+}
+
+.katex-xray-root .var-k,
+.katex-xray-root .var-du {
+  color: var(--accent-rose);
+  border-bottom-color: color-mix(in srgb, var(--accent-rose) 55%, transparent);
+}
+
+.katex-xray-root [class*="var-"]:hover,
+.katex-xray-root .xray-active-token {
+  background-color: color-mix(in srgb, currentColor 18%, transparent);
+  box-shadow: 0 0 0 1.5px color-mix(in srgb, currentColor 65%, transparent);
+  transform: translateY(-1px);
+}
+
+.katex-xray-root .step-changed {
+  display: inline-block;
+  padding: 0.08em 0.3em;
+  border-radius: 0.38rem;
+  background-color: color-mix(in srgb, var(--accent-amber) 20%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent-amber) 55%, transparent);
+  color: var(--foreground);
+}
+
+/* Mafs Theme Integration */
+.vyshmat-mafs .MafsView {
+  --mafs-bg: transparent;
+  --mafs-fg: var(--foreground);
+  --mafs-origin-color: var(--mafs-axis);
+  --mafs-line-color: var(--mafs-grid);
+  --mafs-grid-line-subdivision-color: transparent;
+  --mafs-blue: #4f8dff;
+  --mafs-teal: #2dd4bf;
+  --mafs-violet: #8b5cf6;
+  --mafs-yellow: #f5b942;
+  --mafs-red: #fb7185;
+  --mafs-green: #22c55e;
+  border-radius: 0.85rem;
+  font-family: var(--font-mono);
+}
+
+.vyshmat-mafs .MafsView text {
+  fill: var(--muted-foreground);
+  font-size: 11px;
+}
+
+/* Card surface utilities defined explicitly */
+.card-surface-def {
+  background: var(--surface-def);
+}
+.card-surface-graph {
+  background: var(--surface-graph);
+}
+.card-surface-theorem {
+  background: var(--surface-theorem);
+}
+.card-surface-example {
+  background: var(--surface-example);
+}
